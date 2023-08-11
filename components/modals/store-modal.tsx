@@ -41,8 +41,10 @@ export const StoreModal = () => {
       setLoading(true);
 
       const response = await axios.post('/api/stores', values);
+      
 
-      toast.success("Tạo cửa hàng thành công");
+      toast.success("Thêm cửa hàng thành công");
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
       toast.error("Lỗi xảy ra khi xử lý dữ liệu " + error)
     } finally {
