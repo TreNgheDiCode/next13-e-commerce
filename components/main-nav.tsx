@@ -16,8 +16,13 @@ export function MainNav({
   const routes = [
     {
       href: `/${params.storeId}`,
-      label: 'Bảng điều khiển',
+      label: 'Tổng quan',
       active: pathname === `/${params.storeId}`
+    },
+    {
+      href: `/${params.storeId}/billboards`,
+      label: 'Quảng cáo',
+      active: pathname === `/${params.storeId}/billboard`
     },
     {
       href: `/${params.storeId}/settings`,
