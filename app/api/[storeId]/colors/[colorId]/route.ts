@@ -5,29 +5,29 @@ import prismadb from "@/lib/prismadb";
 
 export async function GET (
   req: Request,
-  { params }: { params: { sizeId: string } }
+  { params }: { params: { colorId: string } }
 ) {
   try {
-    if (!params.sizeId) {
-      return new NextResponse("Yêu cầu mã kích thước", { status: 400 });
+    if (!params.colorId) {
+      return new NextResponse("Yêu cầu mã màu sắc", { status: 400 });
     }
 
-    const size = await prismadb.size.findUnique({
+    const color = await prismadb.color.findUnique({
       where: {
-        id: params.sizeId,
+        id: params.colorId,
       }
     })
 
-    return NextResponse.json(size);
+    return NextResponse.json(color);
   } catch (error) {
-    console.log('[SIZE_GET]', error);
+    console.log('[COLOR_GET]', error);
     return new NextResponse("Lỗi xảy ra", { status: 500 });
   }
 }
 
 export async function PATCH (
   req: Request,
-  { params }: { params: { storeId: string, sizeId: string } }
+  { params }: { params: { storeId: string, colorId: string } }
 ) {
   try {
     const { userId } = auth();
@@ -41,15 +41,15 @@ export async function PATCH (
     }
 
     if (!name) {
-      return new NextResponse("Yêu cầu nhập tên kích thước", { status: 400 });
+      return new NextResponse("Yêu cầu nhập tên màu sắc", { status: 400 });
     }
 
     if (!value) {
       return new NextResponse("Yêu cầu nhập giá trị", { status: 400 });
     }
 
-    if (!params.sizeId) {
-      return new NextResponse("Yêu cầu mã kích thước", { status: 400 });
+    if (!params.colorId) {
+      return new NextResponse("Yêu cầu mã màu sắc", { status: 400 });
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -63,9 +63,9 @@ export async function PATCH (
       return new NextResponse("Cửa hàng không hợp lệ", { status: 403 });
     }
 
-    const sizs = await prismadb.size.updateMany({
+    const colors = await prismadb.color.updateMany({
       where: {
-        id: params.sizeId,
+        id: params.colorId,
       },
       data: {
         name,
@@ -73,16 +73,16 @@ export async function PATCH (
       }
     })
 
-    return NextResponse.json(sizs);
+    return NextResponse.json(colors);
   } catch (error) {
-    console.log('[SIZE_PATCH]', error);
+    console.log('[COLOR_PATCH]', error);
     return new NextResponse("Lỗi xảy ra", { status: 500 });
   }
 }
 
 export async function DELETE (
   req: Request,
-  { params }: { params: { storeId: string, sizeId: string } }
+  { params }: { params: { storeId: string, colorId: string } }
 ) {
   try {
     const { userId } = auth();
@@ -91,8 +91,8 @@ export async function DELETE (
       return new NextResponse("Tài khoản chưa đăng nhập", { status: 401 });
     }
 
-    if (!params.sizeId) {
-      return new NextResponse("Yêu cầu mã kích thước", { status: 400 });
+    if (!params.colorId) {
+      return new NextResponse("Yêu cầu mã màu sắc", { status: 400 });
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -106,15 +106,15 @@ export async function DELETE (
       return new NextResponse("Cửa hàng không hợp lệ", { status: 403 });
     }
 
-    const sizes = await prismadb.size.deleteMany({
+    const colors = await prismadb.color.deleteMany({
       where: {
-        id: params.sizeId,
+        id: params.colorId,
       }
     })
 
-    return NextResponse.json(sizes);
+    return NextResponse.json(colors);
   } catch (error) {
-    console.log('[SIZE_DELETE]', error);
+    console.log('[COLOR_DELETE]', error);
     return new NextResponse("Lỗi xảy ra", { status: 500 });
   }
 }
