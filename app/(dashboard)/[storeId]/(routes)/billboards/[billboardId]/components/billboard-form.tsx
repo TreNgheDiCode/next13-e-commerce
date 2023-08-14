@@ -70,7 +70,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       router.push(`/${params.storeId}/billboards`)
       toast.success(toastMessage);
     } catch (error) {
-      toast.error("Lỗi xảy ra khi tương tác với cửa hàng")
+      toast.error("Lỗi xảy ra khi tương tác với quảng cáo")
     } finally {
       setLoading(false);
     }
@@ -84,7 +84,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
       router.push(`/${params.storeId}/billboards`);
       toast.success("Xóa quảng cáo thành công");
     } catch (error) {
-      toast.error("Bạn phải xóa tất cả danh mục thể loại đang sử dụng quảng cáo này")
+      toast.error("Bạn phải xóa tất cả danh mục đang sử dụng quảng cáo này")
     } finally {
       setLoading(false);
       setOpen(false);
