@@ -302,7 +302,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
-                      Đã đăng
+                      Đăng bán
                     </FormLabel>
                     <FormDescription>
                       Sản phẩm này sẽ xuất hiện trên trang chủ
@@ -325,10 +325,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
-                      Đã lưu trữ
+                      Tình trạng sản phẩm
                     </FormLabel>
                     <FormDescription>
-                      Sản phẩm này sẽ không xuất hiện ở bất kỳ đâu trong cửa hàng
+                      Sản phẩm này sẽ không xuất hiện ở tất cả các chức năng nếu hết hàng
                     </FormDescription>
                   </div>
                 </FormItem>

@@ -25,13 +25,13 @@ export const columns: ColumnDef<ProductColumn>[] = [
     header: "Trạng thái",
     cell: ({ row }) => (
       <div>
-        {row.original.isArchieved ? "Tạm ẩn" : "Hoạt động" }
+        {row.original.isArchieved ? "Hết hàng" : "Còn hàng" }
       </div>
     )
   },
   {
     accessorKey: "isFeatured",
-    header: "Đã đăng",
+    header: "Đang đăng bán",
     cell: ({ row }) => (
       <div>
         {row.original.isFeatured ? "Có" : "Không" }
