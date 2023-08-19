@@ -9,10 +9,6 @@ import Button from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 
-interface SummaryProps {
-
-}
-
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
@@ -34,8 +30,8 @@ const Summary = () => {
   }, 0)
 
   const onCheckout = async () => {
-    const response = await axios.post(`${process.env.NEXT_STORE_API_URL}/checkout`, {
-      productIds: items.map(item => item.id)
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
+      productIds: items.map((item) => item.id)
     });
 
     window.location = response.data.url;
@@ -73,11 +69,11 @@ const Summary = () => {
           <Currency value={totalPrice} />
         </div>
       </div>
-      <Button onClick={onCheckout} className="w-full mt-6">
+      <Button onClick={onCheckout} disabled={items.length === 0} className="w-full mt-6">
         Thanh toán
       </Button>
     </div>
   )
 };
 
-export default Summary
+export default Summary;

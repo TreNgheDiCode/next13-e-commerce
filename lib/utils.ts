@@ -7,5 +7,5 @@ export function cn(...inputs: ClassValue[]) {
 
 export const formatter = new Intl.NumberFormat("vi", {
   style: 'currency',
-  currency: 'VND'
+  currency: 'USD'
 });
