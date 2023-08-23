@@ -4,21 +4,23 @@ import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { DataTable } from "@/components/ui/data-table";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { CategoryColumn, columns } from "./columns";
-import { DataTable } from "@/components/ui/data-table";
+import { ApiAlert } from "@/components/ui/api-alert";
+
+import { columns, CategoryColumn } from "./columns";
 import { ApiList } from "@/components/ui/api-list";
 
-interface CategoryClientProps {
-  data: CategoryColumn[]
+interface CategoriesClientProps {
+  data: CategoryColumn[];
 }
 
-export const CategoryClient: React.FC<CategoryClientProps> = ({
+export const CategoriesClient: React.FC<CategoriesClientProps> = ({
   data
 }) => {
-  const router = useRouter();
   const params = useParams();
+  const router = useRouter();
 
   return (
     <>
@@ -28,7 +30,7 @@ export const CategoryClient: React.FC<CategoryClientProps> = ({
           description="Quản lý danh mục của cửa hàng"
         />
         <Button onClick={() => router.push(`/${params.storeId}/categories/new`)}>
-          <Plus className="hr-2 h-4 w-4"  />
+          <Plus className="mr-2 h-4 w-4"  />
           Thêm mới
         </Button>
       </div>
@@ -39,4 +41,4 @@ export const CategoryClient: React.FC<CategoryClientProps> = ({
       <ApiList entityName="categories" entityIdName="categoryId" />
     </>
   )
-}
+};

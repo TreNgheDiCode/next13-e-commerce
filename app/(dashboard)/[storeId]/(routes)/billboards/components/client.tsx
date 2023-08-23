@@ -4,21 +4,22 @@ import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { DataTable } from "@/components/ui/data-table";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { BillboardColumn, columns } from "./columns";
-import { DataTable } from "@/components/ui/data-table";
 import { ApiList } from "@/components/ui/api-list";
 
+import { columns, BillboardColumn } from "./columns";
+
 interface BillboardClientProps {
-  data: BillboardColumn[]
+  data: BillboardColumn[];
 }
 
 export const BillboardClient: React.FC<BillboardClientProps> = ({
   data
 }) => {
-  const router = useRouter();
   const params = useParams();
+  const router = useRouter();
 
   return (
     <>
@@ -28,7 +29,7 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({
           description="Quản lý quảng cáo của cửa hàng"
         />
         <Button onClick={() => router.push(`/${params.storeId}/billboards/new`)}>
-          <Plus className="hr-2 h-4 w-4"  />
+          <Plus className="mr-2 h-4 w-4"  />
           Thêm mới
         </Button>
       </div>
@@ -39,4 +40,4 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({
       <ApiList entityName="billboards" entityIdName="billboardId" />
     </>
   )
-}
+};

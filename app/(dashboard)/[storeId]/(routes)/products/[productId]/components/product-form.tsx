@@ -1,47 +1,32 @@
-"use client";
+"use client"
 
-import * as z from "zod";
-import axios from "axios";
-import { Trash } from "lucide-react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { useParams, useRouter } from "next/navigation";
-import { Category, Color, Image, Product, Size } from "@prisma/client";
+import * as z from "zod"
+import axios from "axios"
+import { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "react-hot-toast"
+import { Trash } from "lucide-react"
+import { Category, Color, Image, Product, Size } from "@prisma/client"
+import { useParams, useRouter } from "next/navigation"
 
-import { Button } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
-import { 
-  Form, 
-  FormControl, 
-  FormDescription, 
-  FormField, 
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
   FormItem,
   FormLabel,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { AlertModal } from "@/components/modals/alert-modal";
-import ImageUpload from "@/components/ui/image-upload";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-
-interface ProductFormProps {
-  initialData: Product & {
-    images: Image[]
-  } | null;
-  categories: Category[];
-  colors: Color[];
-  sizes: Size[];
-}
+  FormMessage,
+} from "@/components/ui/form"
+import { Separator } from "@/components/ui/separator"
+import { Heading } from "@/components/ui/heading"
+import { AlertModal } from "@/components/modals/alert-modal"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import ImageUpload from "@/components/ui/image-upload"
+import { Checkbox } from "@/components/ui/checkbox"
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -51,10 +36,19 @@ const formSchema = z.object({
   colorId: z.string().min(1),
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
-  isArchieved: z.boolean().default(false).optional(),
-})
+  isArchived: z.boolean().default(false).optional()
+});
 
-type ProductFormValues = z.infer<typeof formSchema>;
+type ProductFormValues = z.infer<typeof formSchema>
+
+interface ProductFormProps {
+  initialData: Product & {
+    images: Image[]
+  } | null;
+  categories: Category[];
+  colors: Color[];
+  sizes: Size[];
+};
 
 export const ProductForm: React.FC<ProductFormProps> = ({
   initialData,
@@ -86,7 +80,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       colorId: '',
       sizeId: '',
       isFeatured: false,
-      isArchieved: false
+      isArchived: false
     }
   });
 
@@ -168,7 +162,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               </FormItem>
             )}
           />
-          <div className="grid grid-cols-3 gap-8">
+          <div className="md:grid md:grid-cols-3 gap-8">
             <FormField
               control={form.control}
               name="name"
@@ -294,7 +288,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox 
+                    <Checkbox
                       checked={field.value}
                       // @ts-ignore
                       onCheckedChange={field.onChange}
@@ -305,7 +299,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       Đăng bán
                     </FormLabel>
                     <FormDescription>
-                      Sản phẩm này sẽ xuất hiện trên trang chủ
+                      Sản phẩm này sẽ xuất hiện trên trang chủ cửa hàng
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -313,11 +307,11 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
-              name="isArchieved"
+              name="isArchived"
               render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Checkbox 
+                    <Checkbox
                       checked={field.value}
                       // @ts-ignore
                       onCheckedChange={field.onChange}
@@ -336,10 +330,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
           </div>
           <Button disabled={loading} className="ml-auto" type="submit">
-              {action}
+            {action}
           </Button>
         </form>
       </Form>
     </>
-  )
-}
+  );
+};

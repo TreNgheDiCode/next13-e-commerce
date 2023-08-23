@@ -1,11 +1,12 @@
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
-import { formatter } from "@/lib/utils";
+
 import prismadb from "@/lib/prismadb";
+import { formatter } from "@/lib/utils";
 
-
+import { OrderColumn } from "./components/columns"
 import { OrderClient } from "./components/client";
-import { OrderColumn } from "./components/columns";
+
 
 const OrdersPage = async ({
   params
@@ -14,7 +15,7 @@ const OrdersPage = async ({
 }) => {
   const orders = await prismadb.order.findMany({
     where: {
-      storeId: params.storeId,
+      storeId: params.storeId
     },
     include: {
       orderItems: {
@@ -24,9 +25,9 @@ const OrdersPage = async ({
       }
     },
     orderBy: {
-      createdAt: "desc"
+      createdAt: 'desc'
     }
-  })
+  });
 
   const formattedOrders: OrderColumn[] = orders.map((item) => ({
     id: item.id,
@@ -37,7 +38,7 @@ const OrdersPage = async ({
       return total + Number(item.product.price)
     }, 0)),
     isPaid: item.isPaid,
-    createdAt: format(item.createdAt, "13 MMMM, yyyy", {locale: vi})
+    createdAt: format(item.createdAt, "do MMMM, yyyy", {locale: vi})
   }))
 
   return (  
@@ -47,6 +48,6 @@ const OrdersPage = async ({
       </div>
     </div>
   );
-}
+};
 
 export default OrdersPage;

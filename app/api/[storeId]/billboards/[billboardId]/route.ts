@@ -1,9 +1,9 @@
-import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs";
 
 import prismadb from "@/lib/prismadb";
 
-export async function GET (
+export async function GET(
   req: Request,
   { params }: { params: { billboardId: string } }
 ) {
@@ -117,4 +117,4 @@ export async function DELETE (
     console.log('[BILLBOARD_DELETE]', error);
     return new NextResponse("Lỗi xảy ra", { status: 500 });
   }
-}
+};

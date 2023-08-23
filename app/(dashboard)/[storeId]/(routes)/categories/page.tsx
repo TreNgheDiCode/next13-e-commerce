@@ -1,10 +1,10 @@
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
 
-import { CategoryClient } from "./components/client";
-
 import prismadb from "@/lib/prismadb";
-import { CategoryColumn } from "./components/columns";
+
+import { CategoryColumn } from "./components/columns"
+import { CategoriesClient } from "./components/client";
 
 const CategoriesPage = async ({
   params
@@ -13,27 +13,27 @@ const CategoriesPage = async ({
 }) => {
   const categories = await prismadb.category.findMany({
     where: {
-      storeId: params.storeId,
+      storeId: params.storeId
     },
     include: {
       billboard: true,
     },
     orderBy: {
-      createdAt: "desc"
+      createdAt: 'desc'
     }
-  })
+  });
 
   const formattedCategories: CategoryColumn[] = categories.map((item) => ({
     id: item.id,
     name: item.name,
     billboardLabel: item.billboard.label,
-    createdAt: format(item.createdAt, "13 MMMM, yyyy", {locale: vi})
+    createdAt: format(item.createdAt, "do MMMM, yyyy", {locale: vi})
   }))
 
   return (  
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <CategoryClient data={formattedCategories} />
+        <CategoriesClient data={formattedCategories} />
       </div>
     </div>
   );

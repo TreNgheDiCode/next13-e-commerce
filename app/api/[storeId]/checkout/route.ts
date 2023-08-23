@@ -6,7 +6,7 @@ import prismadb from "@/lib/prismadb";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
@@ -66,7 +66,6 @@ export async function POST(
   const session = await stripe.checkout.sessions.create({
     line_items,
     mode: 'payment',
-    payment_method_types: ['card'],
     billing_address_collection: 'required',
     phone_number_collection: {
       enabled: true,

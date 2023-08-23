@@ -1,16 +1,22 @@
 "use client";
 
+import axios from "axios";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
-import { toast } from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import axios from "axios";
+import { toast } from "react-hot-toast";
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuLabel, 
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
 import { ProductColumn } from "./columns";
-import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
   data: ProductColumn;
@@ -60,6 +66,7 @@ export const CellAction: React.FC<CellActionProps> = ({
             <span className="sr-only">
               Tùy chọn
             </span>
+            <MoreHorizontal className="h-4 w-4" />
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>

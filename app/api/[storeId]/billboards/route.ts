@@ -76,4 +76,4 @@ export async function GET (
     console.log('[BILLBOARDS_GET', error);
     return new NextResponse("Lỗi xảy ra", { status: 500 });
   }
-}
+};

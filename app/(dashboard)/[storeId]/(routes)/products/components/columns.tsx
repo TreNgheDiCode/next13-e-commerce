@@ -5,14 +5,14 @@ import { CellAction } from "./cell-action"
 
 export type ProductColumn = {
   id: string
-  name: string
+  name: string;
   price: string;
-  size: string;
   category: string;
+  size: string;
   color: string;
-  isFeatured: boolean;
-  isArchieved: boolean;
   createdAt: string;
+  isFeatured: boolean;
+  isArchived: boolean;
 }
 
 export const columns: ColumnDef<ProductColumn>[] = [
@@ -25,7 +25,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
     header: "Trạng thái",
     cell: ({ row }) => (
       <div>
-        {row.original.isArchieved ? "Hết hàng" : "Còn hàng" }
+        {row.original.isArchived ? "Hết hàng" : "Còn hàng" }
       </div>
     )
   },
@@ -70,5 +70,5 @@ export const columns: ColumnDef<ProductColumn>[] = [
   {
     id: "actions",
     cell: ({ row }) => <CellAction data={row.original} />
-  }
-]
+  },
+];

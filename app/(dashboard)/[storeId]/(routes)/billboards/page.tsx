@@ -13,18 +13,18 @@ const BillboardsPage = async ({
 }) => {
   const billboards = await prismadb.billboard.findMany({
     where: {
-      storeId: params.storeId,
+      storeId: params.storeId
     },
     orderBy: {
-      createdAt: "desc"
+      createdAt: 'desc'
     }
-  })
+  });
 
   const formattedBillboards: BillboardColumn[] = billboards.map((item) => ({
     id: item.id,
     label: item.label,
-    createdAt: format(item.createdAt, "13 MMMM, yyyy", {locale: vi})
-  }))
+    createdAt: format(item.createdAt, "do MMMM, yyyy", {locale: vi})
+  }));
 
   return (  
     <div className="flex-col">
@@ -33,6 +33,6 @@ const BillboardsPage = async ({
       </div>
     </div>
   );
-}
+};
 
 export default BillboardsPage;

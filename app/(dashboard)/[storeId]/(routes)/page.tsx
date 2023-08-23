@@ -1,28 +1,28 @@
-
 import { CreditCard, DollarSign, Package } from "lucide-react";
 
-import { getSalsesCount } from "@/actions/get-sales-count";
-import { getStocksCount } from "@/actions/get-stocks-count";
-import { getTotalRevenue } from "@/actions/get-totlal-revenue";
+import { Separator } from "@/components/ui/separator";
 import { Overview } from "@/components/overview";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
-import prismadb from "@/lib/prismadb";
-import { formatter } from "@/lib/utils";
+import { getTotalRevenue } from "@/actions/get-total-revenue";
+import { getSalesCount } from "@/actions/get-sales-count";
 import { getGraphRevenue } from "@/actions/get-graph-revenue";
+import { getStockCount } from "@/actions/get-stock-count";
+import { formatter } from "@/lib/utils";
 
-interface DashbaardProps {
-  params: { storeId: string }
-}
+interface DashboardPageProps {
+  params: {
+    storeId: string;
+  };
+};
 
-const DashboardPage: React.FC<DashbaardProps> = async ({
+const DashboardPage: React.FC<DashboardPageProps> = async ({ 
   params
 }) => {
   const totalRevenue = await getTotalRevenue(params.storeId);
-  const salesCount = await getSalsesCount(params.storeId);
-  const stockCount = await getStocksCount(params.storeId);
   const graphRevenue = await getGraphRevenue(params.storeId);
+  const salesCount = await getSalesCount(params.storeId);
+  const stockCount = await getStockCount(params.storeId);
 
   return (
     <div className="flex-col">
@@ -44,7 +44,7 @@ const DashboardPage: React.FC<DashbaardProps> = async ({
             </CardContent>
           </Card>
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between spave-y-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Sản phẩm đã bán
               </CardTitle>
@@ -57,7 +57,7 @@ const DashboardPage: React.FC<DashbaardProps> = async ({
             </CardContent>
           </Card>
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between spave-y-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Số lượng tồn kho
               </CardTitle>
@@ -82,6 +82,6 @@ const DashboardPage: React.FC<DashbaardProps> = async ({
     </div>
     
   );
-}
+};
 
 export default DashboardPage;

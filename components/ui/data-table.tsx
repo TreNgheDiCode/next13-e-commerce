@@ -1,8 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-
+import { useState } from "react"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -21,12 +19,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
-  searchKey: string
+  searchKey: string;
 }
 
 export function DataTable<TData, TValue>({
@@ -34,10 +33,7 @@ export function DataTable<TData, TValue>({
   data,
   searchKey,
 }: DataTableProps<TData, TValue>) {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    []
-  )
-
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     data,
     columns,
@@ -46,9 +42,9 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     state: {
-      columnFilters
+      columnFilters,
     }
-  })
+  });
 
   return (
     <div>
@@ -126,4 +122,4 @@ export function DataTable<TData, TValue>({
       </div>
     </div>
   )
-}
+};

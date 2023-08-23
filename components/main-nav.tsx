@@ -1,15 +1,14 @@
-"use client"
+"use client";
 
+import Link from "next/link"
 import { useParams, usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { cn } from "@/lib/utils"
 
 export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
-
   const pathname = usePathname();
   const params = useParams();
 
@@ -74,4 +73,4 @@ export function MainNav({
       ))}
     </nav>
   );
-}
+};

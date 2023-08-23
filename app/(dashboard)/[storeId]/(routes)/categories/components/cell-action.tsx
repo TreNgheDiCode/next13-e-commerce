@@ -1,16 +1,23 @@
 "use client";
 
+import axios from "axios";
+import { useState } from "react";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import axios from "axios";
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuLabel, 
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import { useCategoryModal } from "@/hooks/use-category-modal";
+import { AlertModal } from "@/components/modals/alert-modal";
 
 import { CategoryColumn } from "./columns";
-import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
   data: CategoryColumn;

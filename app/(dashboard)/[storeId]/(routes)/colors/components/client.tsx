@@ -4,21 +4,22 @@ import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { DataTable } from "@/components/ui/data-table";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { ColorColumn, columns } from "./columns";
-import { DataTable } from "@/components/ui/data-table";
 import { ApiList } from "@/components/ui/api-list";
 
+import { columns, ColorColumn } from "./columns";
+
 interface ColorClientProps {
-  data: ColorColumn[]
+  data: ColorColumn[];
 }
 
 export const ColorClient: React.FC<ColorClientProps> = ({
   data
 }) => {
-  const router = useRouter();
   const params = useParams();
+  const router = useRouter();
 
   return (
     <>
@@ -28,7 +29,7 @@ export const ColorClient: React.FC<ColorClientProps> = ({
           description="Quản lý màu sắc của cửa hàng"
         />
         <Button onClick={() => router.push(`/${params.storeId}/colors/new`)}>
-          <Plus className="hr-2 h-4 w-4"  />
+          <Plus className="mr-2 h-4 w-4"  />
           Thêm mới
         </Button>
       </div>
@@ -39,4 +40,4 @@ export const ColorClient: React.FC<ColorClientProps> = ({
       <ApiList entityName="colors" entityIdName="colorId" />
     </>
   )
-}
+};

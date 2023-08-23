@@ -1,24 +1,20 @@
-import './globals.css'
-
-import type { Metadata } from 'next'
-
+import { ClerkProvider } from '@clerk/nextjs'
 import { Inter } from 'next/font/google'
 
-import { ClerkProvider } from '@clerk/nextjs';
+import { ModalProvider } from '@/providers/modal-provider'
+import { ToastProvider } from '@/providers/toast-provider'
+import { ThemeProvider } from '@/providers/theme-provider'
 
-import { ModalProvider } from '@/providers/modal-provider';
-import prismadb from '@/lib/prismadb';
-import { ToasterProvider } from '@/providers/toast-provider';
-import { ThemeProvider } from '@/providers/theme-provider';
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'Bảng điều khiển',
-  description: 'Bảng điều khiển dành cho quản trị viên',
+export const metadata = {
+  title: 'Dashboard',
+  description: 'E-Commerce Dashboard',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
@@ -27,8 +23,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <ToasterProvider />
+          <ThemeProvider 
+            attribute="class" 
+            defaultTheme="system" 
+            enableSystem
+          >
+            <ToastProvider />
             <ModalProvider />
             {children}
           </ThemeProvider>
