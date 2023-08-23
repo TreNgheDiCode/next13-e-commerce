@@ -61,7 +61,7 @@ export async function POST(
         }
       },
       data: {
-        isArchieved: true
+        isArchived: true
       }
     });
   }
