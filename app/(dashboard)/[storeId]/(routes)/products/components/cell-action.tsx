@@ -67,7 +67,6 @@ export const CellAction: React.FC<CellActionProps> = ({
               Tùy chọn
             </span>
             <MoreHorizontal className="h-4 w-4" />
-            <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
