@@ -44,10 +44,10 @@ export const SizeForm: React.FC<SizeFormProps> = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? 'Edit size' : 'Create size';
-  const description = initialData ? 'Edit a size.' : 'Add a new size';
-  const toastMessage = initialData ? 'Size updated.' : 'Size created.';
-  const action = initialData ? 'Save changes' : 'Create';
+  const title = initialData ? 'Chỉnh sửa kích thước' : 'Tạo kích thước mới';
+  const description = initialData ? 'Chỉnh sửa một kích thước.' : 'Tạo một kích thước mới';
+  const toastMessage = initialData ? 'Cập nhật kích thước thành công.' : 'Tạo kích thước thành công.';
+  const action = initialData ? 'Lưu thay đổi' : 'Tạo mới';
 
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),
@@ -68,7 +68,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
       router.push(`/${params.storeId}/sizes`);
       toast.success(toastMessage);
     } catch (error: any) {
-      toast.error('Something went wrong.');
+      toast.error('Có lỗi xảy ra khi tương tác với kích thước.');
     } finally {
       setLoading(false);
     }
@@ -80,9 +80,9 @@ export const SizeForm: React.FC<SizeFormProps> = ({
       await axios.delete(`/api/${params.storeId}/sizes/${params.sizeId}`);
       router.refresh();
       router.push(`/${params.storeId}/sizes`);
-      toast.success('Size deleted.');
+      toast.success('Xóa kích thước thành công.');
     } catch (error: any) {
-      toast.error('Make sure you removed all products using this size first.');
+      toast.error('Đảm bảo đã xóa tất cả sản phẩm đang sử dụng kích thước này.');
     } finally {
       setLoading(false);
       setOpen(false);
@@ -97,7 +97,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
       onConfirm={onDelete}
       loading={loading}
     />
-     <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
         {initialData && (
           <Button
@@ -119,9 +119,9 @@ export const SizeForm: React.FC<SizeFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Tên kích thước</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder="Size name" {...field} />
+                    <Input disabled={loading} placeholder="Nhập tên kích thước" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -132,7 +132,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
               name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Value</FormLabel>
+                  <FormLabel>Giá trị</FormLabel>
                   <FormControl>
                     <Input disabled={loading} placeholder="Size value" {...field} />
                   </FormControl>
