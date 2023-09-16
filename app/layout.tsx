@@ -6,6 +6,7 @@ import { ToastProvider } from '@/providers/toast-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
 
 import './globals.css'
+import { viVN } from '@clerk/localizations'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +21,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={viVN}>
       <html lang="en">
         <body className={inter.className}>
           <ThemeProvider 
